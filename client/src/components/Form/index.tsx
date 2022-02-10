@@ -8,7 +8,7 @@ export const Form = observer(() => {
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [picture, setPicture] = useState<File>();
+  const [picture, setPicture] = useState<Blob>();
   const { createCard } = useCardsStore();
 
   const handleSubmit = () => {
@@ -18,7 +18,8 @@ export const Form = observer(() => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files![0];
     if (file) {
-      setPicture(file);
+      const blobFile = new Blob([file], { type: file.type });
+      setPicture(blobFile);
     }
   };
 
@@ -51,7 +52,7 @@ export const Form = observer(() => {
         </label>
         <label>
           Picture
-          <input type="file" onChange={handleFileChange} />
+          <input name="picture" type="file" onChange={handleFileChange} />
         </label>
       </Box>
       <Button onClick={handleSubmit}>Добавить карточку</Button>

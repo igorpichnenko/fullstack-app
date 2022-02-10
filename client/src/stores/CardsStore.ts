@@ -28,14 +28,20 @@ export class CardsStore {
 
   createCard = async ({ author, title, text, image }: ResponseCards) => {
     try {
-      console.log(image);
-      await axios.post('http://localhost:5000/api/posts', {
-        author,
-        title,
-        text,
-        image,
-      });
-      this.getAllCards();
+      if (image) {
+        const formData = new FormData();
+        formData.set('title', title);
+        formData.set('text', text);
+        formData.set('author', author);
+        formData.append('picture', image);
+        console.log(image);
+        await axios.post('http://localhost:5000/api/posts', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        this.getAllCards();
+      }
     } catch (err) {
       console.log(err);
       throw err;

@@ -13,7 +13,7 @@ const app = express();
 app.use(Cors());
 app.use(express.json());
 app.use(express.static('static'));
-app.use(fileUpload({}));
+app.use(fileUpload());
 app.use('/api', router);
 
 async function startApp() {

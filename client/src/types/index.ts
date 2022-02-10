@@ -4,5 +4,5 @@ export interface ResponseCards {
   text: string;
   picture?: string;
   author: string;
-  image?: File;
+  image?: Blob;
 }
