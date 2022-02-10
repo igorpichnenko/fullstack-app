@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import router from './routers/router.js';
 import fileUpload from 'express-fileupload';
+import Cors from 'cors';
 
 const PORT = 5000;
 
@@ -9,6 +10,7 @@ const DB_URL = `mongodb+srv://user:user@cluster0.1sq4p.mongodb.net/myFirstDataba
 
 const app = express();
 
+app.use(Cors());
 app.use(express.json());
 app.use(express.static('static'));
 app.use(fileUpload({}));
