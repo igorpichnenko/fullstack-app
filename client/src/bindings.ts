@@ -6,9 +6,7 @@ import { CardsStore } from './stores/CardsStore';
 export function createIOC() {
   const ioc = new Container({ skipBaseClassChecks: true });
 
-
   ioc.bind(iocNames.cardsStore).toConstantValue(CardsStore);
- 
 
   return ioc;
 }

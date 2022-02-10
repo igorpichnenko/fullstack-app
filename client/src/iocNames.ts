@@ -3,4 +3,3 @@ export const services = {
 };
 
 export const iocNames = services;
-
