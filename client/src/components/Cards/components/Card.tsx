@@ -11,15 +11,9 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { ResponseCards } from '../../../types';
 
-interface Props {
-  title: string;
-  text: string;
-  picture: string;
-  author: string;
-}
-
-export const Card: FC<Props> = ({ text, title, picture, author }) => {
+export const Card: FC<ResponseCards> = ({ text, title, picture, author }) => {
   return (
     <MuiCard sx={{ maxWidth: 345 }}>
       <CardHeader
