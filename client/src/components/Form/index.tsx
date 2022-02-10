@@ -8,11 +8,11 @@ export const Form = observer(() => {
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [picture, setPicture] = useState<Blob>();
+  const [image, setPicture] = useState<Blob>();
   const { createCard } = useCardsStore();
 
   const handleSubmit = () => {
-    createCard({ author, title, text, image: picture });
+    createCard({ author, title, text, image });
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

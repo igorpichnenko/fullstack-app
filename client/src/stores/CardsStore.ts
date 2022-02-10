@@ -34,7 +34,7 @@ export class CardsStore {
         formData.set('text', text);
         formData.set('author', author);
         formData.append('picture', image);
-        console.log(image);
+
         await axios.post('http://localhost:5000/api/posts', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -42,6 +42,16 @@ export class CardsStore {
         });
         this.getAllCards();
       }
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  };
+
+  deleteCard = async (id: string) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/posts/${id}`);
+      this.getAllCards();
     } catch (err) {
       console.log(err);
       throw err;

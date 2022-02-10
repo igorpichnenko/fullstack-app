@@ -11,9 +11,24 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { ResponseCards } from '../../../types';
+import { useCardsStore } from '../../../hooks/useCardsStore';
 
-export const Card: FC<ResponseCards> = ({ text, title, picture, author }) => {
+export const Card: FC<ResponseCards> = ({
+  text,
+  title,
+  picture,
+  author,
+  _id,
+}) => {
+  const { deleteCard } = useCardsStore();
+
+  const handleOnClick = () => {
+    if (_id) {
+      deleteCard(_id);
+    }
+  };
   return (
     <MuiCard sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -47,6 +62,9 @@ export const Card: FC<ResponseCards> = ({ text, title, picture, author }) => {
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
+        </IconButton>
+        <IconButton aria-label="delete" onClick={handleOnClick}>
+          <DeleteIcon />
         </IconButton>
       </CardActions>
     </MuiCard>

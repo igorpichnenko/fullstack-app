@@ -20,6 +20,7 @@ export const Cards: React.FC = observer(() => {
               text={el.text}
               picture={el.picture}
               author={el.author}
+              _id={el._id}
             />
           </Box>
         ))}
