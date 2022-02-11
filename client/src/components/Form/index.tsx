@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { useCardsStore } from '../../hooks/useCardsStore';
+import { Label } from './styles';
 
 export const Form = observer(() => {
   const [author, setAuthor] = useState('');
@@ -24,38 +25,45 @@ export const Form = observer(() => {
   };
 
   return (
-    <Box ml={10} mt={10}>
-      <Box display="flex" flexDirection="column" gap={2}>
-        <label>
-          Author
-          <input
-            type="text"
-            onChange={(e) => setAuthor(e.target.value)}
-            value={author}
-          />
-        </label>
-        <label>
-          Title
-          <input
-            type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-        </label>
-        <label>
-          Content
-          <input
-            type="text"
-            onChange={(e) => setText(e.target.value)}
-            value={text}
-          />
-        </label>
-        <label>
-          Picture
-          <input name="picture" type="file" onChange={handleFileChange} />
-        </label>
+    <form>
+      <Box ml={10} mt={10}>
+        <Box display="flex" flexDirection="column" gap={2} width={300}>
+          <Label>
+            Author
+            <input
+              type="text"
+              onChange={(e) => setAuthor(e.target.value)}
+              value={author}
+            />
+          </Label>
+          <Label>
+            Title
+            <input
+              type="text"
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
+            />
+          </Label>
+          <Label>
+            Content
+            <textarea
+              rows={5}
+              cols={25}
+              onChange={(e) => setText(e.target.value)}
+              value={text}
+            />
+          </Label>
+          <Label>
+            Picture
+            <input name="picture" type="file" onChange={handleFileChange} />
+          </Label>
+        </Box>
+        <Box mt={3}>
+          <Button color="secondary" variant="contained" onClick={handleSubmit}>
+            Добавить карточку
+          </Button>
+        </Box>
       </Box>
-      <Button onClick={handleSubmit}>Добавить карточку</Button>
-    </Box>
+    </form>
   );
 });
